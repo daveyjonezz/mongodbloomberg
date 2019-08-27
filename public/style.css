@@ -95,40 +95,44 @@ nav li a {
   transition: background .3s ease-in-out;
 }
 
-.post-preview>.post-meta {
+.post-meta {
   color: #808080;
   font-size: 18px;
   font-style: italic;
   margin-top: 0;
 }
 
-.post-preview>.post-meta a {
+.post-meta a {
   color: #616161;
 }
 
-.post-preview>.post-meta a:hover {
+.post-meta a:hover {
   color: #26a69a;
 }
 
-.post-preview>a>.post-subtitle {
+.post-subtitle {
   margin: 0;
   color: #616161;
   font-weight: 300;
   margin-bottom: 10px;
 }
 
-.post-preview>a>.post-subtitle:hover {
-  color: #26a69a;
-}
-
-.post-preview>a>.post-title {
-  font-size: 36px;
+.post-title {
+  font-size: 30px;
   color: #616161;
   margin-top: 30px;
   margin-bottom: 10px;
 }
 
-.post-preview>a>.post-title:hover {
+.post-title:hover {
+  color: #26a69a;
+}
+
+a {
+  color: #616161;
+}
+
+a:hover{
   color: #26a69a;
 }
 
@@ -138,24 +142,4 @@ hr {
   margin-bottom: 20px;
   border: 0;
   border-top: 1px solid #eee;
-}
-
-.subTitleFont {
-  -webkit-box-sizing: content-box;
-  -moz-box-sizing: content-box;
-  box-sizing: content-box;
-  border: none;
-  font: normal 25px/1 "alex-brush", Helvetica, sans-serif;
-  -o-text-overflow: ellipsis;
-  text-overflow: ellipsis;
-}
-
-.titleFont {
-  -webkit-box-sizing: content-box;
-  -moz-box-sizing: content-box;
-  box-sizing: content-box;
-  border: none;
-  font: normal 65px/1 "carter-one", Helvetica, sans-serif;
-  -o-text-overflow: ellipsis;
-  text-overflow: ellipsis;
 }

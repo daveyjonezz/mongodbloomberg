@@ -7,6 +7,7 @@ window.onload = showArticles;
 
 $(document).on("click", ".scrape", Scrape);
 $(document).on("click", ".save", SaveArticle);
+$(document).on("click", ".savedPage", showSavedPage);
 
 function Scrape() {
   $.getJSON("/api/scrape").then(function(data) {
@@ -47,6 +48,15 @@ function showEmpty() {
   <br>
   </div>`
   $(".post-preview").append(emptyMessage)
+}
+
+function showSavedPage(){
+  $.ajax({
+    method: "GET",
+    url: "/saved",
+  }).then(function(data) {
+    $("html").html(data);
+  });
 }
 
 function SaveArticle() {

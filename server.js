@@ -122,9 +122,9 @@ app.post("/articles/:id", function(req, res) {
     });
 });
 
-app.get("/saved", function(req, res) {
-    res.render("saved")
-  });
+app.get('/saved',function(req,res) {
+  res.sendFile('saved.html');
+});
 
 // Start the server
 app.listen(PORT, function () {

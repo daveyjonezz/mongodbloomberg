@@ -8,11 +8,13 @@ window.onload = showArticles;
 $(document).on("click", ".scrape", Scrape);
 $(document).on("click", ".save", SaveArticle);
 $(document).on("click", ".savedPage", showSavedPage);
+$(document).on("click", ".delete-articles", deleteArticles);
 
 function Scrape() {
   $.getJSON("/api/scrape").then(function(data) {
       console.log(data)
-      location.reload()
+      showArticles()
+      console.log("worked")
     });
   }
 
@@ -24,11 +26,14 @@ $.getJSON("/api/articles", function(data) {
   for (var i = 0; i < data.length; i++) {
     // Display the apropos information on the page
     var newsArticle = $("<div class='newsArticle'>").append("<a class = 'post-title titleFont' href=" + data[i].link + " data-id='" + data[i]._id + "'>" + data[i].title + "</a>")
-    .append("<h6 class = 'post-subtitle subTitleFont'>" + data[i].body + "<a><i class='material-icons right save'>save</i></a></h6>")
+    .append("<h6 class = 'post-subtitle subTitleFont'>" + data[i].body + "<a><i class='material-icons right save' data-id='" + data[i]._id + "'>save</i></a></h6>")
     .append("<hr>")
     newsArticle.data("_id",data._id)
     $(".post-preview").append(newsArticle)
-  }}
+  }
+  var deleteAll = `<div class="alert center-align red delete-articles hover">Delete All Articles</div>`
+  $(".post-preview").append(deleteAll)
+}
   else {
     showEmpty();
   }
@@ -50,6 +55,13 @@ function showEmpty() {
   $(".post-preview").append(emptyMessage)
 }
 
+function deleteArticles() {
+  $.get("api/delete").then(function() {
+    $(".post-preview").empty();
+    showArticles();
+  });
+}
+
 function showSavedPage(){
   $.ajax({
     method: "GET",
@@ -60,16 +72,13 @@ function showSavedPage(){
 }
 
 function SaveArticle() {
-  // This function is triggered when the user wants to save an article
-  // When we rendered the article initially, we attached a javascript object containing the headline id
-  // to the element using the .data method. Here we retrieve that.
   var savedArticle = $(".post-title").data();
   console.log(savedArticle)
   $(this).parents(".newsArticle").remove();
   $(this).parents(".newsArticle").saved = true;
   $.ajax({
     method: "POST",
-    url: "/api/save/" + savedArticle.id,
+    url: "/api/save/" + $(this).attr("data-id"),
     data: savedArticle
   }).then(function(data) {
     if (data.saved) {

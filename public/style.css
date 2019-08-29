@@ -143,3 +143,11 @@ hr {
   border: 0;
   border-top: 1px solid #eee;
 }
+
+.input-field .prefix{
+  color: grey
+}
+
+h4, h8{
+  color: grey
+}
